@@ -1,0 +1,6 @@
+db.admins.insertOne({
+  "username" : "mohan",
+  "password" : "mohan"
+});
+
+//use this to insert an admin.
