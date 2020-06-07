@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
     <title>Admin View</title>
 </head>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
-
 *, *:before, *:after {
   margin: 0;
   padding: 0;
@@ -28,9 +23,7 @@ table {
   background: #012B39;
   border-radius: 0.25em;
   border-collapse: collapse;
-
   width: 100%;
-
 }
 span{
   color:#fff;
@@ -59,7 +52,6 @@ td {
    padding-right: 0;
   }
 }
-
 tbody tr {
   transition: background 0.25s ease;
 }
@@ -73,22 +65,28 @@ a{
 a:hover{
   color: #fff;
 }
+.alink{
+  color: #ffdb4d;
+  text-decoration: none;
+}
+.alink:hover{
+  color: #ffeb99;
+  text-decoration: none;
+}
 .alert{
   border: 0;
   background-color: #012B39;
 }
 #chart{
   font-size: 150%;
-
 }
-
 </style>
 <body>
+  <!-- displaying the list of registered users -->
   <div class="alert alert-info" role="alert">
-    <a  href="/admin" >Log Out</a> </div>
+    <a class="alink" href="/admin" >Log Out</a> </div>
   <h1 style="text-align: center;">Registered Users</h1>
   <a id="chart" href="/newroute" style="float:right">View Chart</a>
-
 <table>
   <tr>
     <th>Register ID</th>
@@ -97,12 +95,12 @@ a:hover{
   </tr>
     <% items.forEach(function(image) { %>
       <tr>
-        <td><a href="/details/<%= image._id %>" name="id"><%= image._id %></a></td>
+        <!-- provided with hyperlink to view individual registration details -->
+        <td><a class="alink" href="/details/<%= image._id %>" name="id"><%= image._id %></a></td>
         <td><%= image.date %></td>
         <td><%= image.name %></td>
       </tr>
     <% }) %>
 </table>
-
 </body>
 </html>

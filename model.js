@@ -10,7 +10,6 @@ var imageSchema = new mongoose.Schema({
     type:String,
   },
   name: String,
-
 	email: {
     type:String,
     unique: true,
@@ -33,7 +32,5 @@ var imageSchema = new mongoose.Schema({
 },{
   timestamps: true
 });
-
-//Image is a model which has a schema imageSchema
-
+//users is the collection created in db
 module.exports = new mongoose.model('users', imageSchema);

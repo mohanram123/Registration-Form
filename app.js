@@ -1,24 +1,24 @@
 var express = require('express')
 var app = express()
+
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
-//const shortid = require('shortid');
-
-
 var fs = require('fs');
 var path = require('path');
 require('dotenv/config');
 var multer = require('multer');
 
-//var val=1000;
+//Getting the system date
 var d = new Date();
 var day = d.getDate();
 var month=d.getMonth()+1;
 var year=d.getFullYear();
 var str=day+'/'+month+'/'+year;
 
+//The schema for uploading the user's details
 var imgModel = require('./model');
+
+//Connecting to the database
 mongoose.connect('mongodb://localhost:27017/Forms');
 var db=mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
@@ -26,6 +26,7 @@ db.once('open', function(callback){
     console.log("connection succeeded");
 })
 
+//Uploading the image to MongoDB
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads')
@@ -46,12 +47,12 @@ app.use(express.static('./public'));
 // Set EJS as templating engine
 app.set("view engine", "ejs");
 
-
+//Main Page
 app.get('/', (req,res) => {
   res.render('app');
 })
 
-// Uploading the image
+// Uploading the registered user
 app.post('/sign_up', upload.single('image'), (req, res, next) => {
 	 obj = {
     date:str,
@@ -70,7 +71,7 @@ app.post('/sign_up', upload.single('image'), (req, res, next) => {
 			console.log(err);
 		}
 		else {
-      // item.save();
+      // Retriving the Register ID
       var phone1 = obj.phone;
              imgModel.find({phone: phone1 }, (err,docs) => {
               if(err) console.log(err);
@@ -81,13 +82,13 @@ app.post('/sign_up', upload.single('image'), (req, res, next) => {
 	});
 });
 
-
+//Admin page
 app.get('/admin', (req,res) => {
   res.render('admin');
-})
+});
 
 
-
+//Admin authentication
 app.post('/login', (req,res) => {
   var username = req.body.name;
   var password = req.body.pass;
@@ -100,14 +101,13 @@ app.post('/login', (req,res) => {
     if(!user){
       return res.status(404).send();
     }
-
     return res.redirect('/adminview');
   });
 });
 
+//The PieChart Logic
 app.get('/newroute', (req, res) => {
   imgModel.find({Regtype : "Self"}).count({}, function(err, a){
-
    if(err){
      console.log(err);
    }
@@ -118,7 +118,7 @@ app.get('/newroute', (req, res) => {
          console.log(err);
        }
        else{
-        imgModel.find({Regtype : "Coporate"}).count({}, function(err, c)
+        imgModel.find({Regtype : "Corporate"}).count({}, function(err, c)
      {
        if(err){
          console.log(err);
@@ -132,31 +132,22 @@ app.get('/newroute', (req, res) => {
        else{
         console.log("The count is:"+a+b+c+d);
         res.render('Piechart', {
-
             self: a,
             group: b,
             coporate: c,
             others: d
-
+            });
+          }
         });
-      }
-
-     }
-    );
-      }
-
-     }
-    );
-      }
-
-     }
-    );
+       }
+     });
+    }
+   });
   }
-
+ });
 });
-});
 
-
+//List of people registered
 app.get('/adminview', (req, res) => {
     imgModel.find({}, (err, items) => {
         if (err) {
@@ -168,7 +159,7 @@ app.get('/adminview', (req, res) => {
     });
   });
 
-
+// Getting the particular user's entry
 app.get('/details/:regId', (req,res) => {
   imgModel.find({_id: req.params.regId }, (err,docs) => {
     if(err) console.log(err);
@@ -180,4 +171,4 @@ app.listen('3000' || process.env.PORT, err => {
 	if (err)
 		throw err
 	console.log('Server started')
-})
+});

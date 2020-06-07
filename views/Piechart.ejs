@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <title>HTML5 Bar Graph</title>
+    <title>Registration Statistics</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 
-
-body, table, input, select, textarea {
-
+.alink{
+  color: #ffdb4d;
+  text-decoration: none;
 }
-
+.alink:hover{
+  color: #ffeb99;
+  text-decoration: none;
+}
 
 .graph {
 	margin-bottom:1em;
@@ -84,8 +87,9 @@ a:hover{
 			font:bold 80%/120% arial,helvetica,sans-serif;
 		}
 
+/* Change the max limit of the bar graph here */
 		.graph tbody:before {
-			content:"10";
+			content:"20";
 			top:-0.6em;
 		}
 
@@ -200,48 +204,39 @@ h2{
   text-align: center;
   text-transform: uppercase	;
 }
-
-
-    
-
-
 	} /* min-width:32em */
-
 } /* grid only */
 </style>
 </head>
   <body>
 	<div class="alert alert-info" role="alert">
-		<a  href="/adminview" >Go back</a> </div>
+		<a  href="/adminview" class="alink">Go back</a> </div>
     <table class="graph">
-	<h2>Registered Persons</h2>
+	<h2>Registeration Statistics</h2>
 	<thead>
 		<tr>
 			<th scope="col">Item</th>
 			<th scope="col">Percent</th>
 		</tr>
 	</thead><tbody>
-		<tr style="height:<%= self %>0%"><!--bar value-->
+    <!-- Alter the bar values when the max limit is changed -->
+		<tr style="height:<%= self*5 %>%"><!--bar value-->
 			<th scope="row">Self</th><!--attributes-->
 			<td id="a1"><span><%= self %></span></td><!--value-->
 		</tr>
-		<tr style="height:<%= group %>0%">
+		<tr style="height:<%= group*5 %>%"><!--bar value-->
 			<th scope="row">Group</th>
 			<td id="a2"><span><%= group %></span></td>
 		</tr>
-		<tr style="height:<%= coporate %>0%">
-			<th scope="row">Coporate</th>
+		<tr style="height:<%= coporate*5 %>%"><!--bar value-->
+			<th scope="row">Corporate</th>
 			<td id="a3"><span><%= coporate %></span></td>
 		</tr>
-		<tr style="height:<%= others %>0%">
+		<tr style="height:<%= others*5 %>%"><!--bar value-->
 			<th scope="row">Others</th>
 			<td id="a4"><span><%= others %></span></td>
 		</tr>
-		
-		
-		
 	</tbody>
 </table>
-
   </body>
 </html>

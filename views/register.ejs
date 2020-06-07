@@ -4,61 +4,44 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
- <title>Event Registration</title>
+  <title>Registration</title>
 <style>
-
 body {
   background: #105469;
   font-family: 'Open Sans', sans-serif;
 }
-table {
-  background: #012B39;
-  border-radius: 0.25em;
-  border-collapse: collapse;
-
-  width: 100%;
-
-}
 h2{
-  color:#fff;
-  text-shadow: 4px 4px #012B39;
+  color:#ffdb4d;
   text-align: center;
 }
-p{
-    color:#fff;
-      text-align: center;
-
+h4,h5,h1,p{
+  color:#fff;
+  text-align: center;
 }
-a{
-  color: #fff;
-  text-decoration: underline;
+.alink{
+  color: #ffdb4d;
+  text-decoration: none;
 }
-a:hover{
-  color: #fff;
+.alink:hover{
+  color: #ffeb99;
+  text-decoration: none;
 }
-
 </style>
 </head>
 <body>
-    <a  href="/" >Go to Register page</a> </div>
-  <h2>Registered Successfully!</h2>
-  <h4>Your Registration ID</h4><br>
+    <a class="alink" href="/" >Submit Another Response</a> </div>
+  <!-- The registration id visible for the user -->
+  <h4>Your Registration ID</h4>
   <div>
     <% docs.forEach(function(image) { %>
     <div>
             <div>
-                <h5><%= image._id %></h5>
+                <h2><%= image._id %></h2>
             </div>
     </div>
     <% }) %>
 </div>
-
-
-
+<h1>Thank you For Registering our event!</h1>
+<p>Please Note your Registration ID</p>
 </body>
 </html>
