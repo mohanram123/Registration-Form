@@ -1,7 +1,16 @@
 var mongoose = require('mongoose');
+const shortid = require('shortid');
 
 var imageSchema = new mongoose.Schema({
-	name: String,
+  id:{
+    type: String,
+    default: shortid.generate
+  },
+  date:{
+    type:String,
+  },
+  name: String,
+
 	email: {
     type:String,
     unique: true,
@@ -21,8 +30,10 @@ var imageSchema = new mongoose.Schema({
 		data: Buffer,
 		contentType: String
 	}
+},{
+  timestamps: true
 });
 
 //Image is a model which has a schema imageSchema
 
-module.exports = new mongoose.model('Image', imageSchema);
+module.exports = new mongoose.model('users', imageSchema);

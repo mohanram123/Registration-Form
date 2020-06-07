@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+ <title>Event Registration</title>
+<style>
+
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+}
+table {
+  background: #012B39;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+
+  width: 100%;
+
+}
+h2{
+  color:#fff;
+  text-shadow: 4px 4px #012B39;
+  text-align: center;
+}
+p{
+    color:#fff;
+      text-align: center;
+
+}
+a{
+  color: #fff;
+  text-decoration: underline;
+}
+a:hover{
+  color: #fff;
+}
+
+</style>
+</head>
+<body>
+    <a  href="/" >Go to Register page</a> </div>
+  <h2>Registered Successfully!</h2>
+  <h4>Your Registration ID</h4><br>
+  <div>
+    <% docs.forEach(function(image) { %>
+    <div>
+            <div>
+                <h5><%= image.id %></h5>  
+            </div>
+    </div>
+    <% }) %>
+</div>
+
+
+
+</body>
+</html>
