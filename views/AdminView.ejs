@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -28,7 +28,7 @@ table {
   background: #012B39;
   border-radius: 0.25em;
   border-collapse: collapse;
-  
+
   width: 100%;
 
 }
@@ -88,20 +88,18 @@ a:hover{
     <a  href="/admin" >Log Out</a> </div>
   <h1 style="text-align: center;">Registered Users</h1>
   <a id="chart" href="/newroute" style="float:right">View Chart</a>
-  
+
 <table>
   <tr>
-    <th>Register number</th>
+    <th>Register ID</th>
     <th>Date</th>
     <th>Name</th>
-    <th>Object ID</th>
   </tr>
     <% items.forEach(function(image) { %>
       <tr>
-        <td><%= image.id %></td>
+        <td><a href="/details/<%= image._id %>" name="id"><%= image._id %></a></td>
         <td><%= image.date %></td>
         <td><%= image.name %></td>
-        <td><a href="/details/<%= image._id %>" name="id"><%= image._id %></a></td>
       </tr>
     <% }) %>
 </table>

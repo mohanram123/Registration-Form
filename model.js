@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 const shortid = require('shortid');
 
 var imageSchema = new mongoose.Schema({
-  id:{
+  _id:{
     type: String,
     default: shortid.generate
   },

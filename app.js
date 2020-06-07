@@ -3,7 +3,7 @@ var app = express()
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-const shortid = require('shortid');
+//const shortid = require('shortid');
 
 
 var fs = require('fs');
@@ -54,7 +54,7 @@ app.get('/', (req,res) => {
 // Uploading the image
 app.post('/sign_up', upload.single('image'), (req, res, next) => {
 	 obj = {
-     date:str,
+    date:str,
     name: req.body.name,
     email: req.body.email,
     ticket: req.body.ticket,
