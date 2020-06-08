@@ -178,7 +178,7 @@ app.get('/details/:regId', (req,res) => {
   });
 });
 
-app.listen('3000' || process.env.PORT, err => {
+app.listen(process.env.PORT, err => {
 	if (err)
 		throw err
 	console.log('Server started')
