@@ -17,14 +17,16 @@ var str=day+'/'+month+'/'+year;
 
 //The schema for uploading the user's details
 var imgModel = require('./model');
-
+const connectDB = require('./DB/connection');
+connectDB();
 //Connecting to the database
-mongoose.connect('mongodb://localhost:27017/Forms');
-var db=mongoose.connection;
-db.on('error', console.log.bind(console, "connection error"));
-db.once('open', function(callback){
-    console.log("connection succeeded");
-})
+// const URI = 'mongodb+srv://mohan:mohan@cluster0-cej4i.mongodb.net/test?retryWrites=true&w=majority';
+// mongoose.connect('mongodb://localhost:27017/Forms');
+// var db=mongoose.connection;
+// db.on('error', console.log.bind(console, "connection error"));
+// db.once('open', function(callback){
+//     console.log("connection succeeded");
+// })
 
 //Uploading the image to MongoDB
 var storage = multer.diskStorage({
@@ -90,19 +92,28 @@ app.get('/admin', (req,res) => {
 
 //Admin authentication
 app.post('/login', (req,res) => {
+  // var collection = db.collection("admins");
+  // collection.findOne({username: username,password: password}, (err,user) => {
+  //   if(err){
+  //     console.log(err);
+  //     return res.status(500).send();
+  //   }
+  //   if(!user){
+  //     return res.status(404).send();
+  //   }
+  //   return
+  var user = "mohan";
+  var pass = "mohan";
   var username = req.body.name;
   var password = req.body.pass;
-  var collection = db.collection("admins");
-  collection.findOne({username: username,password: password}, (err,user) => {
-    if(err){
-      console.log(err);
-      return res.status(500).send();
-    }
-    if(!user){
-      return res.status(404).send();
-    }
-    return res.redirect('/adminview');
-  });
+  if(user === username && pass === password)
+  {
+   res.redirect('/adminview');
+ }
+ else{
+   res.redirect('/');
+ }
+ //});
 });
 
 //The PieChart Logic
